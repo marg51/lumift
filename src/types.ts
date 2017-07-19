@@ -54,11 +54,36 @@ interface APPLET {
     }
 }
 type SCHEDULER_CONFIG = {
+    getKey?: (ingredients: any) => any
     debounce?: number
     throttle?: number
     waitCalls?: number
+    activate?: {
+        until: (obj: any) => boolean
+        when: (ingredients: any) => boolean
+        map?: (ingredients: any) => any
+    }
+    hold?: {
+        until: (obj: any) => boolean
+        when: (ingredients: any) => boolean
+        map?: (ingredients: any) => any
+    }
     buffer?: {
         until: (obj: any) => boolean
-        map: (item: any, context: any) => any
+        map?: (item: any, context: any) => any
     }
+}
+
+type CONTEXT = {
+    applet: APPLET
+    config: any
+    ingredients: any
+    context: {
+        buffer?: any[]
+        hold: any
+    }
+}
+
+type ANY_OBJECT = {
+    [key: string]: any
 }

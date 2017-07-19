@@ -83,7 +83,7 @@ function checkComplexObject(object, something, currentPath) {
     }
 
     if (object.$contains) {
-        return arrayContains(something, object.$contains)
+        return arrayContains(something, object.$contains, currentPath)
     }
 
     if (object.$defined) {
@@ -138,3 +138,9 @@ export default (object1, object2) => {
         return false
     }
 }
+
+export const matchWord = (word: string) =>
+    new RegExp("(^|\\W)" + word + "(\\W|$)")
+
+export const matchWords = (words: string[]) =>
+    words.map(matchWord)

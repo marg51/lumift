@@ -16,6 +16,10 @@ export default (applet: APPLET, config: SCHEDULER_CONFIG = {}, data: any, callba
     if (config.buffer)
         return setBuffer(applet, config, data, callback)
 
+    if (config.hold)
+        return hold(applet, config, data, callback)
+
+
     if (config.throttle)
         return setThrottle(applet, config, data, callback)
 
@@ -91,6 +95,30 @@ function waitCalls(applet, config, data, callback) {
     if (config.waitCalls <= count) {
         mapped[key] = 0
         callback(data)
+    }
+}
+
+function hold(applet: APPLET, config: SCHEDULER_CONFIG, data, callback) {
+    const key = _getKey(applet, config, data, callback)
+
+
+    const mapped = map.get(applet)
+
+    if (config.hold.when(data) && !mapped[key]) {
+        logger.log("registering")
+        if (config.hold.map) {
+            const new_data = config.hold.map(data)
+            if (new_data)
+                mapped[key] = new_data
+        } else {
+            mapped[key] = data
+        }
+    }
+    if (mapped[key]) {
+        if (config.hold.until({ ingredients: data, context: { hold: mapped[key] } })) {
+            callback(data, { hold: mapped[key] })
+            delete mapped[key]
+        }
     }
 }
 

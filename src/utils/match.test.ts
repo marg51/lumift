@@ -1,4 +1,4 @@
-const match = require("./match")
+import match, { matchWords, matchWord } from "./match"
 
 describe("match", () => {
     it("should validate simple case", () => expect(match(1, 1)).toBe(true))
@@ -55,4 +55,25 @@ describe("match", () => {
         expect(match({ a: "1" }, { b: { $defined: true } })).toBe(
             false
         ))
+})
+
+describe("matchWords", () => {
+    it("should match single word", () =>
+        expect(match({ a: "ping" }, { a: matchWord("ping") })).toBe(true)
+    )
+    it("should starting word", () =>
+        expect(match({ a: "ping u" }, { a: matchWord("ping") })).toBe(true)
+    )
+    it("should match word in the middle", () =>
+        expect(match({ a: "u ping u" }, { a: matchWord("ping") })).toBe(true)
+    )
+    it("should match word at the end", () =>
+        expect(match({ a: "u ping" }, { a: matchWord("ping") })).toBe(true)
+    )
+    it("should fail if trailing", () =>
+        expect(match({ a: "pingu" }, { a: matchWord("ping") })).toBe(false)
+    )
+    it("should fail if leading", () =>
+        expect(match({ a: "uping" }, { a: matchWord("ping") })).toBe(false)
+    )
 })
