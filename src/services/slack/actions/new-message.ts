@@ -1,22 +1,15 @@
 const logger = require("../../../utils/log").createLogger("slack/new-message")
 
-const createTemplate = require("lodash").template
-const sendMessage = require("../utils/send-message")
+import SlackService from "../index"
 
-const token = process.env.SLACK_TOKEN
-const template = "a new issue #<%=number%> has been opened"
-const channel = "G0YDU2X47"
+const sendMessage = require("../utils/send-message")
 
 import parseParam from "../../../utils/parseParams"
 
-module.exports = {
+const newMessageAction: ACTION = {
     id: "notifications:slack-message",
-    requires: [],
-    isValid: () => true,
-    hooks: {
-        pre() { },
-        post() { },
-    },
+    service: SlackService,
+    name: "Send Slack message",
     exec(applet, ingredients, config, context) {
         const { channel, token } = config
 
@@ -26,3 +19,5 @@ module.exports = {
         )
     },
 }
+
+export default newMessageAction

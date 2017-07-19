@@ -26,7 +26,7 @@
     "test": "jest",
     "build": "tsc -p src",
     "start": "node dist/server",
-    "deploy": "scp -r examples utils package* .env applets services uto.io:lumi"
+    "deploy": "rsync -r dist pack* .env uto.io:lumift "
   },
   "author": "",
   "license": "ISC",

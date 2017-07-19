@@ -1,6 +1,6 @@
 import SlackService from "../services/slack"
 import AnyTrigger from "../services/slack/triggers/rtm"
-const SlackMessageAction = require("../services/slack/actions/new-message")
+import SlackMessageAction from "../services/slack/actions/new-message"
 
 import match, { matchWords, matchWord } from "../utils/match"
 
