@@ -1,8 +1,8 @@
 const logger = require("../log.js").createLogger("webhooks/handleQuery")
 
-const filterTrigger = require("./filterTrigger")
+import filterTrigger from "./filterTrigger"
 
-const runActions = require("../runActions")
+import runActions from "../runActions"
 
 export default (applet: APPLET) => (req: any, res: any, next: any) => {
     try {

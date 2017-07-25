@@ -1,11 +1,12 @@
 import match from "../../../utils/match"
+import Service from "../"
 
 import rtm from "../utils/rtm-connection"
 
 const stream: TRIGGER_STREAM = {
     id: "slack:all-rtm-events",
     type: "stream", // "action"
-    service: "slack",
+    service: Service,
     name: "All RTM events",
     extract_ingredients: event => event,
     stream_config: {

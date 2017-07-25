@@ -1,5 +1,5 @@
 export const applets: APPLET[] = [
     require("../applets/emojiReply"),
-    require("../applets/emojiReplySomeoneElse"),
-    require("../applets/ping")
+    require("../applets/ping"),
+    require("../applets/anyWebhookToSlack")
 ].map((applet) => applet.default)

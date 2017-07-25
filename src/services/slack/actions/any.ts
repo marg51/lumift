@@ -4,6 +4,7 @@ const logger = require("../../../utils/log").createLogger("slack/actions/rtm")
 const slack = require("../utils/slack")
 
 import SlackService from "../index"
+import parseParam from "../../../utils/parseParams"
 
 
 const slackAnyAction: ACTION = {
@@ -23,11 +24,3 @@ const slackAnyAction: ACTION = {
     },
 }
 export default slackAnyAction
-
-function parseParam(value, { applet, ingredients, config, context }) {
-    if (typeof value == "function") {
-        return value({ applet, ingredients, config, context })
-    }
-
-    return value
-}

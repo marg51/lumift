@@ -1,6 +1,6 @@
 interface TRIGGER_BASE {
     id: string
-    service: string
+    service: SERVICE
     name: string
     extract_ingredients: (event: any) => any
 }
@@ -50,9 +50,13 @@ interface APPLET {
     webhook_config?: any
     config: {
         scheduler?: SCHEDULER_CONFIG
-        [key: string]: any
+        webhook?: WEBHOOK_CONFIG
+        stream?: STREAM_CONFIG
+        [key: string]: CONTEXT_CALLBACK | ANY_OBJECT
     }
 }
+
+type CONTEXT_CALLBACK = (context: CONTEXT) => ANY_OBJECT
 type SCHEDULER_CONFIG = {
     getKey?: (ingredients: any) => any
     debounce?: number

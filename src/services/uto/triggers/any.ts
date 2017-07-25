@@ -1,9 +1,12 @@
-module.exports = {
+import Service from "../"
+const applet: TRIGGER_WEBHOOK = {
     id: "uto:any",
     type: "webhook", // "action"
-    service: "github",
+    service: Service,
     name: "New Issue",
     extract_ingredients: ({ body }) => {
         return body
     },
 }
+
+export default applet

@@ -2,8 +2,8 @@ const logger = require("../log.js").createLogger("webhooks/register")
 
 const { server } = require("./index")
 
-const decorateApplet = require("./decorateApplet")
-const handleQuery = require("./handleQuery")
+import decorateApplet from "./decorateApplet"
+import handleQuery from "./handleQuery"
 
 const registerPubsubhubbub = require("./register_pubsubhubbub")
 const registerCrc = require("./register_crc")
