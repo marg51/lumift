@@ -5,6 +5,8 @@ const slackService: SERVICE = {
         url: "/slack",
         method: "POST",
         inline_validation_config: {},
+        transform: body =>
+            JSON.parse(decodeURIComponent(body.replace("payload=", ""))),
     },
     triggers: [],
     actions: [],

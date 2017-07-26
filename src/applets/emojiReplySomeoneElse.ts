@@ -43,15 +43,16 @@ const waver: APPLET = {
         [AnyTrigger.id]: {
             type: "message"
         },
-        [SlackAnyAction.id]: {
+        [SlackAnyAction.id]: ({ ingredients, context }: any) => ({
             action: "reactions.add",
             token: process.env.SLACK_BOT_TOKEN,
-            payload: ({ ingredients, context }: any) => ({
+            payload: {
                 name: context.hold.emoji,
+                token: process.env.SLACK_BOT_TOKEN,
                 channel: ingredients.channel,
                 timestamp: ingredients.ts
-            })
-        },
+            }
+        }),
     },
 }
 

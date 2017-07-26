@@ -59,7 +59,7 @@ function registerEndpoint(method, url, callbacks) {
 
             const response = callbacks.reduce(
                 (state, cb) => cb(...args) || state,
-                { ok: true }
+                ":+1:"
             )
 
             // this is calling res.send()

@@ -11,10 +11,11 @@ export default function ({ token }, onEvent) {
 
         bot.started(function (payload) {
             logger.warn("connection started")
-            onEvent({
+
+            pool[token].map(onEvent => onEvent({
                 type: "started",
                 payload
-            })
+            }))
         })
 
         bot.listen({ token: token }, () => {

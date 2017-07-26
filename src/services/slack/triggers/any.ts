@@ -15,4 +15,4 @@ let webhook: TRIGGER_WEBHOOK = {
     },
 }
 
-module.exports = webhook
+export default webhook

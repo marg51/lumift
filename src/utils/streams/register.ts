@@ -2,7 +2,7 @@ const logger = require("../log.js").createLogger("streams/register")
 import match from "../match"
 import decorateApplet from "./decorateApplet"
 
-const runActions = require("../runActions")
+import runActions from "../runActions"
 
 export default (applet: APPLET): void => {
     applet = decorateApplet(applet)
