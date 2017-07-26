@@ -3,7 +3,7 @@ import Service from "../"
 
 import rtm from "../utils/rtm-connection"
 
-const stream: TRIGGER_STREAM = {
+const stream: TRIGGER_STREAM<SLACK_MESSAGE> = {
     id: "slack:all-rtm-events",
     type: "stream", // "action"
     service: Service,

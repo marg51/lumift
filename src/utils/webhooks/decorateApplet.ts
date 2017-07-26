@@ -1,4 +1,4 @@
-export default (applet: APPLET): APPLET => {
+export default (applet: APPLET<any>): APPLET<any> => {
     const webhook = {
         ...applet.service.webhook_config,
         ...applet.webhook_config

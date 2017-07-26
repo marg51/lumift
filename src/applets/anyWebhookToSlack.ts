@@ -3,7 +3,7 @@ import AnyTrigger from "../services/uto/triggers/any"
 import SlackMessageAction from "../services/slack/actions/new-message"
 import PushNotificationAction from "../services/ios/actions/push-notification"
 
-const applet: APPLET = {
+const applet: APPLET<UTO_WEBHOOK> = {
     id: "anyWebhookToSlack",
     name: "anyWebhookToSlack",
     service: UtoService,

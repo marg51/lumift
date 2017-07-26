@@ -1,7 +1,7 @@
 const { every } = require("lodash")
 
 // is data matching this applet filters?
-export default (applet: APPLET, data: any) => {
+export default (applet: APPLET<any>, data: any) => {
     const { _filters, filters } = applet.config.webhook
 
     const all_filters = [].concat(_filters).concat(filters)

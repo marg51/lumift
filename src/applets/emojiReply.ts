@@ -5,7 +5,7 @@ import UtoLog from "../services/uto/actions/termlog"
 import match from "../utils/match"
 
 
-const waver: APPLET = {
+const waver: APPLET<SLACK_MESSAGE> = {
     id: "applet-waver",
     name: "add wave reaction to messages",
     service: SlackService,
@@ -21,7 +21,7 @@ const waver: APPLET = {
                 $exclude: "U5DTPL59V"
             }
         },
-        [SlackAnyAction.id]: ({ ingredients }: CONTEXT) => ({
+        [SlackAnyAction.id]: ({ ingredients }) => ({
             action: "reactions.add",
             payload: {
                 token: process.env.SLACK_BOT_TOKEN,

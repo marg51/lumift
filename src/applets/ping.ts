@@ -5,7 +5,7 @@ import SlackMessageAction from "../services/slack/actions/new-message"
 import match, { matchWords, matchWord } from "../utils/match"
 
 
-const waver: APPLET = {
+const waver: APPLET<SLACK_MESSAGE> = {
     id: "applet-pingpong",
     name: "ping pong",
     service: SlackService,
@@ -25,7 +25,7 @@ const waver: APPLET = {
                 $exclude: "U5DTPL59V"
             }
         },
-        [SlackMessageAction.id]: ({ ingredients }: CONTEXT) => ({
+        [SlackMessageAction.id]: ({ ingredients }) => ({
             text: ingredients.text.match(matchWord("ping")) ? "pong" : "ping",
             channel: ingredients.channel,
             token: process.env.SLACK_TOKEN,

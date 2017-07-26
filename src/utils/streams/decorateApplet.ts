@@ -1,4 +1,4 @@
-export default (applet: APPLET): APPLET => {
+export default (applet: APPLET<any>): APPLET<any> => {
     const stream = {
         ...applet.trigger.stream_config,
         ...applet.stream_config

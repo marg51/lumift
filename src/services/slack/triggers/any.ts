@@ -1,12 +1,12 @@
 import match from "../../../utils/match"
 import Service from "../"
 
-let webhook: TRIGGER_WEBHOOK = {
+let webhook: TRIGGER_WEBHOOK<SLACK_WEBHOOK> = {
     id: "slack:all-events",
     type: "webhook", // "action"
     service: Service,
     name: "All events",
-    extract_ingredients: ({ body }) => {
+    extract_ingredients: ({ body }): SLACK_WEBHOOK => {
         return body
     },
     webhook_config: {

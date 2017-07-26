@@ -7,11 +7,11 @@ import SlackService from "../index"
 import parseParam from "../../../utils/parseParams"
 
 
-const slackAnyAction: ACTION = {
+const slackAnyAction: ACTION<any> = {
     id: "notifications:slack-message",
     name: "use random slack API",
     service: SlackService,
-    exec(applet: APPLET, ingredients: any, config: APPLET_CONFIG, context?: any) {
+    exec(applet, ingredients, config, context) {
         const { action, payload } = parseParam(config, { applet, ingredients, config, context })
         const method = get(slack, action)
         if (!method)

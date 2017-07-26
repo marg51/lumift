@@ -4,7 +4,7 @@ import decorateApplet from "./decorateApplet"
 
 import runActions from "../runActions"
 
-export default (applet: APPLET): void => {
+export default (applet: APPLET<any>): void => {
     applet = decorateApplet(applet)
 
     applet.config.stream.start(applet.config.stream, (event) => {

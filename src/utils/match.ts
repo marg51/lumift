@@ -130,7 +130,7 @@ function newError(currentValue, expectedValue, message, currentPath) {
 }
 
 
-export default (object1, object2) => {
+export default function match<T>(object1: T, object2: MATCH_PARTIAL<T>) {
     try {
         check(object2, object1)
         return true
@@ -144,3 +144,16 @@ export const matchWord = (word: string) =>
 
 export const matchWords = (words: string[]) =>
     words.map(matchWord)
+
+type MATCH_PARTIAL<T> = {
+    [P in keyof T]?: MATCH_SPECIAL | T[P] | RegExp | (RegExp | string)[]
+}
+type MATCH_SPECIAL = {
+    $in?: (string | RegExp)[],
+    $exclude?: (string | RegExp)[],
+    $defined?: true
+    $contains?: (string | RegExp)[]
+}
+type MATCH_SPECIAL_NESTED = {
+    [key: string]: MATCH_SPECIAL
+}

@@ -6,7 +6,7 @@ import UtoLog from "../services/uto/actions/termlog"
 import match from "../utils/match"
 
 
-const waver: APPLET = {
+const waver: APPLET<SLACK_MESSAGE> = {
     id: "applet-waver-someone-else",
     name: "emoji-reply-someone-else",
     service: SlackService,
@@ -43,7 +43,7 @@ const waver: APPLET = {
         [AnyTrigger.id]: {
             type: "message"
         },
-        [SlackAnyAction.id]: ({ ingredients, context }: any) => ({
+        [SlackAnyAction.id]: ({ ingredients, context }) => ({
             action: "reactions.add",
             token: process.env.SLACK_BOT_TOKEN,
             payload: {

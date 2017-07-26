@@ -1,6 +1,6 @@
 import { buttons, response } from "../applets/swearing"
 
-export const applets: APPLET[] = [
+export const applets: APPLET<any>[] = [
     require("../applets/emojiReply").default,
     require("../applets/ping").default,
     require("../applets/emojiReplySomeoneElse").default,

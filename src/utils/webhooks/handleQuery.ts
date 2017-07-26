@@ -4,7 +4,7 @@ import filterTrigger from "./filterTrigger"
 
 import runActions from "../runActions"
 
-export default (applet: APPLET) => (req: any, res: any, next: any) => {
+export default (applet: APPLET<any>) => (req: any, res: any, next: any) => {
     try {
         let { params, body, headers } = req
 

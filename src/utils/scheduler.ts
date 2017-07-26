@@ -6,7 +6,7 @@ declare var Map: any
 
 const map = new Map()
 
-export default (applet: APPLET, config: SCHEDULER_CONFIG = {}, data: any, callback: (data: any, context: any) => void): void => {
+export default (applet: APPLET<any>, config: SCHEDULER_CONFIG<any> = {}, data: any, callback: (data: any, context: any) => void): void => {
     if (!map.has(applet))
         map.set(applet, [])
 
@@ -98,7 +98,7 @@ function waitCalls(applet, config, data, callback) {
     }
 }
 
-function hold(applet: APPLET, config: SCHEDULER_CONFIG, data, callback) {
+function hold(applet: APPLET<any>, config: SCHEDULER_CONFIG<any>, data, callback) {
     const key = _getKey(applet, config, data, callback)
 
 
@@ -115,7 +115,7 @@ function hold(applet: APPLET, config: SCHEDULER_CONFIG, data, callback) {
         }
     }
     if (mapped[key]) {
-        if (config.hold.until({ ingredients: data, context: { hold: mapped[key] } })) {
+        if (config.hold.until({ ingredients: data, context: { hold: mapped[key] }, applet, config })) {
             callback(data, { hold: mapped[key] })
             delete mapped[key]
         }

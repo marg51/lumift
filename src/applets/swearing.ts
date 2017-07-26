@@ -5,8 +5,7 @@ import UtoActions from "../services/uto/actions/termlog"
 
 import match, { matchWords, matchWord } from "../utils/match"
 
-
-export const buttons: APPLET = {
+export const buttons: APPLET<SLACK_MESSAGE> = {
     id: "applet-swearing-1",
     name: "applet-swearing-1",
     service: SlackService,
@@ -21,7 +20,7 @@ export const buttons: APPLET = {
             text: /U5DTPL59V.*swear/,
             user: "U04QB0FJZ"
         },
-        [SlackMessageAction.id]: ({ ingredients }: CONTEXT) => ({
+        [SlackMessageAction.id]: ({ ingredients }): SLACK_MESSAGE => ({
             text: "Qui veux-tu insulter?",
             channel: ingredients.channel,
             attachments: [
@@ -60,7 +59,7 @@ export const buttons: APPLET = {
 
 import AnyWebhookTrigger from "../services/slack/triggers/any"
 
-export const response: APPLET = {
+export const response: APPLET<SLACK_WEBHOOK> = {
     id: "applet-swearing-1",
     name: "applet-swearing-1",
     service: SlackService,
@@ -71,7 +70,7 @@ export const response: APPLET = {
             callback_id: "swear"
         },
         [UtoActions.id]: ({ ingredients }) => ingredients,
-        [SlackMessageAction.id]: ({ ingredients }) => ({
+        [SlackMessageAction.id]: ({ ingredients }): SLACK_MESSAGE => ({
             channel: ingredients.channel.id,
             token: process.env.SLACK_TOKEN,
             text: "<@" + ingredients.actions[0].value + ">: t'es un noob"

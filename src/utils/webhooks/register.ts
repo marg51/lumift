@@ -15,7 +15,7 @@ const endpoints = {
     delete: {},
 }
 
-export default (applet: APPLET) => {
+export default (applet: APPLET<any>) => {
     applet = decorateApplet(applet)
 
     const {

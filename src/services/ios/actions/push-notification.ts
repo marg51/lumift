@@ -5,7 +5,7 @@ import sendPushNotification from "../utils/send-push-notification"
 import parseParam from "../../../utils/parseParams"
 import Service from ".."
 
-const action: ACTION = {
+const action: ACTION<any> = {
     id: "ios:push-notification",
     name: "Send push notification",
     service: Service,

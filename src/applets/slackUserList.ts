@@ -6,7 +6,7 @@ import UtoLog from "../services/uto/actions/termlog"
 import match from "../utils/match"
 
 
-const waver: APPLET = {
+const waver: APPLET<any> = {
     id: "applet-slack-user-list",
     name: "slackUserList",
     service: SlackService,
