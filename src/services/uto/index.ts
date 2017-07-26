@@ -1,4 +1,4 @@
-const anyTrigger = require("./triggers/any")
+// import anyTrigger from "./triggers/any"
 
 const service: SERVICE = {
     id: "github",
@@ -7,7 +7,7 @@ const service: SERVICE = {
         url: "/any",
         method: "POST",
     },
-    triggers: [anyTrigger],
+    triggers: [],
     actions: [],
 }
 

@@ -5,16 +5,15 @@ import sendPushNotification from "../utils/send-push-notification"
 import parseParam from "../../../utils/parseParams"
 import Service from ".."
 
-const action: ACTION<any> = {
+
+const action: ACTION<IOS_PUSH_PAYLOAD> = {
     id: "ios:push-notification",
     name: "Send push notification",
     service: Service,
-    exec(applet, ingredients, config, context) {
-        const { token } = config
+    exec({ payload }) {
 
-        logger.log(parseParam(config, { applet, ingredients, config, context }))
         sendPushNotification(
-            parseParam(config, { applet, ingredients, config, context })
+            payload
         )
     },
 }

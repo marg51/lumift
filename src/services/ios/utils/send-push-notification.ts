@@ -4,7 +4,7 @@ const logger = require("../../../utils/log").createLogger(
 
 const request = require("request")
 
-export default ({ message, token }) => {
+export default ({ message, token }: IOS_PUSH_PAYLOAD) => {
     request.post({
         url: "https://exp.host/--/api/v2/push/send",
         json: {

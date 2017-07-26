@@ -144,16 +144,3 @@ export const matchWord = (word: string) =>
 
 export const matchWords = (words: string[]) =>
     words.map(matchWord)
-
-type MATCH_PARTIAL<T> = {
-    [P in keyof T]?: MATCH_SPECIAL | T[P] | RegExp | (RegExp | string)[]
-}
-type MATCH_SPECIAL = {
-    $in?: (string | RegExp)[],
-    $exclude?: (string | RegExp)[],
-    $defined?: true
-    $contains?: (string | RegExp)[]
-}
-type MATCH_SPECIAL_NESTED = {
-    [key: string]: MATCH_SPECIAL
-}

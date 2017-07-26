@@ -1,18 +1,10 @@
 import { createLogger } from "./log"
 const logger = createLogger("parseParams")
 
-export default function parseParam(value: parseParamValue, { applet, ingredients, config, context }: CONTEXT<any>): any {
-    if (typeof value == "function") {
-        try {
-            return value({ applet, ingredients, config, context })
-        } catch (e) {
-            logger.error(e.message)
-        }
+export default function parseParam<T, P>(value: PAYLOAD_CALLBACK, { applet, ingredients, scheduler, action }: CONTEXT<T, P>): P {
+    try {
+        return value({ applet, ingredients, scheduler, action })
+    } catch (e) {
+        logger.error(e.message)
     }
-
-    return value
 }
-
-type parseParamValue = (context: CONTEXT<any>) => ANY_OBJECT
-
-type parseParam = (value: parseParamValue, { applet, ingredients, config, context }: CONTEXT<any>) => any

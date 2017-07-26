@@ -6,15 +6,14 @@ const sendMessage = require("../utils/send-message")
 
 import parseParam from "../../../utils/parseParams"
 
-const newMessageAction: ACTION<any> = {
+const newMessageAction: ACTION<SLACK_MESSAGE> = {
     id: "notifications:slack-message",
     service: SlackService,
     name: "Send Slack message",
-    exec(applet, ingredients, config, context) {
-        const { channel, token } = config
+    exec({ payload }) {
 
         sendMessage(
-            parseParam(config, { applet, ingredients, config, context }),
+            payload,
             () => { }
         )
     },

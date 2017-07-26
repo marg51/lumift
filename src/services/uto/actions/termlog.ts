@@ -6,8 +6,8 @@ const action: ACTION<any> = {
     id: "uto:log",
     name: "prints value to terminal",
     service: service,
-    exec(applet, ingredients, config, context) {
-        logger.warn(parseParam(config, { applet, ingredients, config, context }))
+    exec({ payload }) {
+        logger.warn(payload)
     },
 }
 

@@ -1,31 +1,24 @@
-import SlackService from "../services/slack"
-import AnyTrigger from "../services/slack/triggers/rtm"
-import SlackMessageAction from "../services/slack/actions/new-message"
+import StartedTrigger from "../services/slack/triggers/rtm-started"
+// import SlackMessageAction from "../services/slack/actions/new-message"
 import UtoLog from "../services/uto/actions/termlog"
 
-import match from "../utils/match"
+import Applet from "../utils/applet"
 
-
-const waver: APPLET<any> = {
-    id: "applet-slack-user-list",
-    name: "slackUserList",
-    service: SlackService,
-    trigger: AnyTrigger,
-    actions: [UtoLog],
+const applet = new Applet<SLACK_STARTED>("slack user list", {
     stream_config: {
         token: process.env.SLACK_BOT_TOKEN
-    },
-    config: {
-        [AnyTrigger.id]: {
-            type: "started"
-        },
-        [UtoLog.id]: ({ ingredients }) => {
-            return ingredients.payload.users
-                .filter(({ deleted }) => !deleted)
-                .map(({ name, id }) => id + " | " + name)
-                .join("\n")
-        }
-    },
-}
+    }
+})
 
-export default waver
+applet.addTrigger(StartedTrigger, {
+    type: "started"
+})
+
+applet.addAction(UtoLog, ({ ingredients }) => {
+    return ingredients.payload.users
+        .filter(({ deleted }) => !deleted)
+        .map(({ name, id }) => id + " | " + name)
+        .join("\n")
+})
+
+export default applet.getApplet()

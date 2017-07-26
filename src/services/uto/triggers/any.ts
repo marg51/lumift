@@ -1,4 +1,5 @@
-import Service from "../"
+import Service from "../index"
+
 const applet: TRIGGER_WEBHOOK<UTO_WEBHOOK> = {
     id: "uto:any",
     type: "webhook", // "action"
