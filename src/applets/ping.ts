@@ -1,4 +1,5 @@
 import AnyTrigger from "../services/slack/triggers/rtm"
+import AnyWebhookTrigger from "../services/uto/triggers/any"
 import SlackMessageAction from "../services/slack/actions/new-message"
 
 import match, { matchWords, matchWord } from "../utils/match"
